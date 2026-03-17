@@ -175,3 +175,4 @@ rm ~/.config/systemd/user/displaybrightness_wifi.service
 rm ~/.local/bin/displaybrightness_wifi.py
 rm -rf ~/.config/displaybrightness
 ```
+Built with AI
