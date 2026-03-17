@@ -1,4 +1,4 @@
-# DisplayBrightness WiFi — Android Phone ALS → Fedora Monitor Brightness
+# KDE Ambient Display Brightness  
 > Zero hardware cost. Uses your Android phone's built-in Ambient Light
 > Sensor streamed over WiFi via the free "Sensor Server" app.
 
@@ -10,7 +10,7 @@
 
 ## Step 1 — Android: Install Sensor Server
 
-1. Open **Google Play Store**
+1. Open **Google Play Store/ F-Droid**
 2. Search **"Sensor Server"** by *Umer Farooq* (free, open source)
    - Or install from F-Droid: `github.umer0586.sensorserver`
 3. Open the app → tap **Start Server**
@@ -175,4 +175,5 @@ rm ~/.config/systemd/user/displaybrightness_wifi.service
 rm ~/.local/bin/displaybrightness_wifi.py
 rm -rf ~/.config/displaybrightness
 ```
+---
 Built with AI
