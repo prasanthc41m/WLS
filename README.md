@@ -342,3 +342,6 @@ KDE PowerDevil
 ## License
 
 MIT — use freely, modify as needed.
+
+---
+Built with AI
