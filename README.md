@@ -1,4 +1,4 @@
-# Wireless Light Sensor (WLS)
+# Wireless Light Sensor (WLS) for KDE Plasma 6
 
 > Automatically adjusts your monitor brightness based on real ambient light
 > data streamed from your Android phone over WiFi — no extra hardware,
