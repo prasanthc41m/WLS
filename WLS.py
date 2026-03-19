@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-camlight_wifi.py
+WLS_wifi.py
 Android Phone ALS → KDE Plasma 6.2+ (Wayland) Monitor Brightness
 
 Features:
@@ -48,8 +48,8 @@ except ImportError:
     sys.exit("ERROR: sudo dnf install -y python3-pyqt6")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-CONFIG_PATH = Path.home() / ".config" / "camlight" / "wifi_config.json"
-LOG_PATH    = Path.home() / ".local"  / "share"    / "camlight" / "wifi.log"
+CONFIG_PATH = Path.home() / ".config" / "WLS" / "wifi_config.json"
+LOG_PATH    = Path.home() / ".local"  / "share"    / "WLS" / "wifi.log"
 CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
@@ -57,7 +57,7 @@ logging.basicConfig(
     filename=str(LOG_PATH), level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
-log = logging.getLogger("camlight")
+log = logging.getLogger("WLS")
 
 LIGHT_SENSOR = "android.sensor.light"
 
@@ -474,7 +474,7 @@ class SettingsDialog(QDialog):
         self.daemon     = daemon
         self.sensor     = sensor
         self.brightness = brightness
-        self.setWindowTitle("CamLight WiFi — Settings")
+        self.setWindowTitle("WLS — Settings")
         self.setMinimumWidth(480)
         self._build()
 
@@ -655,7 +655,7 @@ class SettingsDialog(QDialog):
 # ═════════════════════════════════════════════════════════════════════════════
 #  SYSTEM TRAY
 # ═════════════════════════════════════════════════════════════════════════════
-class CamLightTray:
+class WLSTray:
     GREEN  = "#27ae60"
     ORANGE = "#e67e22"
     RED    = "#e74c3c"
@@ -668,7 +668,7 @@ class CamLightTray:
         self.brightness = brightness
 
         self._tray = QSystemTrayIcon(self._dot(self.RED), app)
-        self._tray.setToolTip("CamLight WiFi")
+        self._tray.setToolTip("WLS")
         self._build_menu()
         self._tray.show()
 
@@ -753,11 +753,11 @@ class CamLightTray:
         nm = " 🌙" if self.cfg.night_mode else ""
         self._st.setText(f"  {st}   [{en}{nm}]")
         self._tray.setIcon(self._dot(col))
-        self._tray.setToolTip(f"CamLight WiFi\n{st}")
+        self._tray.setToolTip(f"WLS\n{st}")
 
     def _hint(self):
         self._tray.showMessage(
-            "CamLight WiFi — Setup needed",
+            "WLS — Setup needed",
             "Right-click → Settings\n"
             "• Enter your phone IP\n"
             "• Choose which display to control",
@@ -786,7 +786,7 @@ def main():
 
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
-    app.setApplicationName("CamLight WiFi")
+    app.setApplicationName("WLS")
 
     if not QSystemTrayIcon.isSystemTrayAvailable():
         print(f"No system tray. Config: {CONFIG_PATH}\nCtrl+C to quit.")
@@ -802,7 +802,7 @@ def main():
             pass
         daemon.stop(); sensor.stop(); disc.stop(); return
 
-    tray = CamLightTray(app, daemon, sensor, cfg, brightness)
+    tray = WLSTray(app, daemon, sensor, cfg, brightness)
     signal.signal(signal.SIGTERM, lambda *_: tray._quit())
     signal.signal(signal.SIGINT,  lambda *_: tray._quit())
     sys.exit(app.exec())
