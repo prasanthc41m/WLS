@@ -474,7 +474,7 @@ class SettingsDialog(QDialog):
         self.daemon     = daemon
         self.sensor     = sensor
         self.brightness = brightness
-        self.setWindowTitle("WLS — Settings")
+        self.setWindowTitle("Wireless Light Sensor — Settings")
         self.setMinimumWidth(480)
         self._build()
 
@@ -668,7 +668,7 @@ class WLSTray:
         self.brightness = brightness
 
         self._tray = QSystemTrayIcon(self._dot(self.RED), app)
-        self._tray.setToolTip("WLS")
+        self._tray.setToolTip("Wireless Light Sensor")
         self._build_menu()
         self._tray.show()
 
@@ -753,11 +753,11 @@ class WLSTray:
         nm = " 🌙" if self.cfg.night_mode else ""
         self._st.setText(f"  {st}   [{en}{nm}]")
         self._tray.setIcon(self._dot(col))
-        self._tray.setToolTip(f"WLS\n{st}")
+        self._tray.setToolTip(f"Wireless Light Sensor\n{st}")
 
     def _hint(self):
         self._tray.showMessage(
-            "WLS — Setup needed",
+            "Wireless Light Sensor — Setup needed",
             "Right-click → Settings\n"
             "• Enter your phone IP\n"
             "• Choose which display to control",
@@ -786,7 +786,7 @@ def main():
 
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
-    app.setApplicationName("WLS")
+    app.setApplicationName("Wireless Light Sensor")
 
     if not QSystemTrayIcon.isSystemTrayAvailable():
         print(f"No system tray. Config: {CONFIG_PATH}\nCtrl+C to quit.")
